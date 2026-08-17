@@ -220,3 +220,7 @@ __marimo__/
 #BIM / IFC Files
 .ifc
 .IFC
+
+#Runtime and Data
+logs/
+data/
