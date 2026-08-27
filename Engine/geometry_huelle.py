@@ -63,6 +63,8 @@ def huellen_extraktor(ifc_model):
 
             min_x, min_y = np.min(transformed_verts[:, :2], axis=0)
             max_x, max_y = np.max(transformed_verts[:, :2], axis=0)
+            min_z, max_z = np.min(transformed_verts[:, 2]), np.max(transformed_verts[:, 2])
+
             poly = Polygon([(min_x, min_y), (max_x, min_y), (max_x, max_y), (min_x, max_y)])
 
             huelle_daten.append({
@@ -70,7 +72,9 @@ def huellen_extraktor(ifc_model):
                 "category": category,
                 "ifc_type": element.is_a(),
                 "name": element.Name,
-                "geometry": poly
+                "geometry": poly,
+                "min_z":round(float(min_z), 3),
+                "max_z":round(float(max_z), 3)
             })
         except Exception as e:
             fehler_count += 1
