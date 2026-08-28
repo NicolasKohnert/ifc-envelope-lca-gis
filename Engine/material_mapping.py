@@ -1,5 +1,5 @@
 MATERIAL_MAPPING = {
-    "Raudbetoon - Konstruksioon": "Reinforced concrete",
+    "Raudbetoon - Konstruktsioon": "Reinforced concrete",
     "Soojustus- vill pehme": "Mineral wool",
     "GENEERLINE - KONSTRUKTRIOON": None,
     "Soojustus- SPU": "Polyurethane rigid foam",
@@ -11,5 +11,7 @@ MATERIAL_MAPPING = {
     "Kipsplaat": "Gypsum board" 
 }
 
-def mappe_material(ifc_material_name):
-    return MATERIAL_MAPPING.get(ifc_material_name)
+def mappe_material(ifc_material_name: str) -> str | None:
+    if not ifc_material_name:
+        return None
+    return MATERIAL_MAPPING.get(ifc_material_name.strip())
