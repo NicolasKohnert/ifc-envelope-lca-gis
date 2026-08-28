@@ -2,6 +2,8 @@ import ifcopenshell.util.element
 
 import logging
 
+from material_mapping import mappe_material
+
 logger = logging.getLogger("BIM-GIS_Pipeline")
 
 def get_material(element):
@@ -39,11 +41,19 @@ def material_extraktor(ifc_model, elemente):
             ohne_material +=1
             logger.warning(f"Missing material {element.GlobalId}:{element.is_a()}")
 
+    oekobaudat_begriffe = []
+    for mat_name in materialien:
+        ziel = mappe_material(mat_name)
+        if ziel is None:
+            logger.warning(f"{element.GlobalId}: Material'{mat_name}'not found")
+        oekobaudat_begriffe.append(ziel)
+
         ergebnisse.append({
             "guid": element.GlobalId,
             "ifc_type": element.is_a(),
             "name": element.Name or "Unknown",
-            "materialien": materialien
+            "materialien": materialien,
+            "oekobaudat_suchbegriffe": oekobaudat_begriffe
         })
     logger.info(f"{len(ohne_material)}elements without material information/ {len(ergebnisse)}elements with material information")
     return ergebnisse
