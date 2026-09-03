@@ -19,6 +19,8 @@ def setup_logger():
     )
     return logging.getLogger("BIM-GIS_Pipeline")
 
+logger = setup_logger()
+
 if __name__ == "__main__":
     logger = setup_logger()
     logging.info("Test-Log: Successfully set up the logger.")
