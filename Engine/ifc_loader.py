@@ -2,10 +2,9 @@ from pathlib import Path
 
 import ifcopenshell
 
-import logging
+from Engine.logger import logger
 
 
-logger = logging.getLogger("BIM-GIS_Pipeline")
 
 BASE_PATH = Path(__file__).resolve().parent.parent
 
@@ -23,7 +22,6 @@ def load_ifc_file(file_name):
         return None
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     model = load_ifc_file("1807_EP_AR_v18.ifc")
 
         
