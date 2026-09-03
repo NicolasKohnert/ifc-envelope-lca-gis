@@ -22,7 +22,7 @@ def load_ifc_file(file_name):
         return None
 
 if __name__ == "__main__":
-    model = load_ifc_file("1807_EP_AR_v18.ifc")
+    model = load_ifc_file("AC-20-Smiley-West-10-Bldg.ifc")
 
         
         
