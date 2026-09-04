@@ -1,5 +1,5 @@
 import ifcopenshell.api
-from logger import logger
+from Engine.logger import logger
 
 def co2_in_ifc_schreiben(ifc_model, co2_ergebnisse):
     geschrieben = 0 
@@ -21,7 +21,7 @@ def co2_in_ifc_schreiben(ifc_model, co2_ergebnisse):
                 pset=pset,
                 properties={
                     "CO2_kg": item["co2_kg"],
-                    "Volumen_m3": item.get("volume"),
+                    "Volumen_m3": item.get("volumen"),
                 },
             )
             geschrieben += 1
