@@ -1,6 +1,6 @@
 import json
 import requests
-from logger import logger
+from Engine.logger import logger
 
 OEKOBAUDAT_BASE_URL = "https://www.oekobaudat.de/OEKOBAU.DAT/resource"
 
@@ -91,6 +91,14 @@ def suche_gwp_faktor(suchbegriff: str, sprache: str = "de") -> float | None:
         if modul_d_wert is not None:
             logger.info(f"Modul D nicht im gesamtwert enthalten: {modul_d_wert}")
 
+        einheit = "m3"
+        try:
+            einheit = (
+                detail_data.get("referenceUnit") or
+                detail_data.get("processInformation", {}).get("dataSetInformation", {}).get("quantitativeReference", {}).get("referenceToReferenceFunction", "m3")
+            )
+        except Exception:
+            pass
         return gesamter_gwp
 
     except Exception as e:
